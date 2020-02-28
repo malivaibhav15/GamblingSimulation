@@ -60,10 +60,15 @@ function monthlyWinOrLoose()
 	done
 		echo "lucky day=$luckyday"
 		echo "unlucky day=$unluckyday"
-		echo ${array[@]}
 	if [[ $winAmount -gt $looseAmount ]]
 	then
 		echo "At the end of $day days gambler wins $(($winAmount-$looseAmount)) stake"
+		read -p "press 1 to continue=" choice
+		if [[ $choice -eq 1 ]]
+		then
+			winOrLoose
+			monthlyWinOrLoose
+		fi
 	else
 		echo "At the end of $day days gambler looses $(($looseAmount-$winAmount)) stake"
 	fi
